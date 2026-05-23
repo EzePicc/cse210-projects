@@ -1,3 +1,5 @@
+//creativity and exceeds core requirements: 
+//The program counts the number of attempts the user takes to complete the scripture
 using System;
 
 class Program
@@ -9,6 +11,7 @@ class Program
             "For God so loved the world that he gave his one and only Son that whoever believes in him shall not perish but have eternal life"
         );
 
+        int attempts = 0;   
         while (true)
         {
             Console.Clear();
@@ -17,7 +20,7 @@ class Program
 
             if (scripture.IsCompletelyHidden())
             {
-                
+                Console.WriteLine($"Congratulations! You memorized the scripture in {attempts} attempts.");
                 break;
             }
 
@@ -30,6 +33,7 @@ class Program
             }
 
             scripture.HideRandomWords(3);
+            attempts++;
         }
     }
 }

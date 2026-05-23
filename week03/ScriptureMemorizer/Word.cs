@@ -1,22 +1,19 @@
+using System;
 class Word
 {
     private bool _isHidden;
     private string _text;
 
-    public void Hide()
-    {
-        _isHidden = true;
-    }
-    public Word(string text)
+   public Word(string text)
     {
         _text = text;
         _isHidden = false;
     }
-
-    public void Show()
+    public void Hide()
     {
-        _isHidden = false;
+        _isHidden = true;
     }
+
     public bool IsHidden()
     {
         return _isHidden;
