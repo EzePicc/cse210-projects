@@ -21,6 +21,7 @@ class Program
             if (scripture.IsCompletelyHidden())
             {
                 Console.WriteLine($"Congratulations! You memorized the scripture in {attempts} attempts.");
+                Console.ReadLine();
                 break;
             }
 
@@ -32,7 +33,7 @@ class Program
                 break;
             }
 
-            scripture.HideRandomWords(3);
+            scripture.HideRandomWords(5);
             attempts++;
         }
     }
