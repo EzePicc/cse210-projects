@@ -27,5 +27,24 @@ class Scripture
             _words[randomIndex].Hide();
         }
     }
-
+        public string GetDisplayText()
+    {
+        string displayText = _reference.GetDisplayText() + "\n\n";
+        foreach (Word word in _words)
+        {
+            displayText += word.GetDisplayText() + " ";
+        }
+        return displayText.Trim();
+    }
+    public bool IsCompletelyHidden()
+    {
+        foreach (Word word in _words)
+        {
+            if (!word.IsHidden())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 }
