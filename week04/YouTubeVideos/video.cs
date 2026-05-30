@@ -17,4 +17,27 @@ public class Video
         _comments.Add(comment);
     }
 
+    public int GetNumberOfComments()
+    {
+        return _comments.Count;
+    }
+
+    public string GetTitle()
+    {
+        return _title;
+    }
+
+    public string GetAuthor()
+    {
+        return _author;
+    }
+    public int GetLengthInSeconds()
+    {
+        return _lengthInSeconds;
+    }
+    public List<Comment> GetComments()
+    {
+        
+        return _comments;
+    }
 }
