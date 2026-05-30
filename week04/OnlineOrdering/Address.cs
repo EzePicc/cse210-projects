@@ -12,5 +12,14 @@ public class Address
         _stateOrProvince = stateOrProvince;
         _country = country;
     }
-    
+
+    public bool IsInUSA()
+    {
+        return _country.ToUpper() == "USA";
+    }
+
+    public string GetFullAddress()
+    {
+        return $"{_street}\n{_city}, {_stateOrProvince}\n{_country}";
+    }
 }
