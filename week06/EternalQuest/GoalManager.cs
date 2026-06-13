@@ -91,4 +91,57 @@ public class GoalManager
         Console.WriteLine($"You earned {goal.GetPoints()} points!");
         _score += goal.GetPoints();
     }
+     public void SaveGoals()
+    {
+        Console.Write("\nFilename: ");
+        string filename = Console.ReadLine();
+        using (StreamWriter file= new StreamWriter(filename))
+        {
+            file.WriteLine(_score);
+            foreach (Goal goal in _goals)
+            {
+                file.WriteLine(goal);
+            }
+        }
+
+        Console.WriteLine("Saved!");
+    }
+    public void LoadGoals()
+    {
+        Console.Write("Filename: ");
+        string filename =Console.ReadLine();
+        string[] lines =File.ReadAllLines(filename);
+        _score = int.Parse(lines[0]);
+        _goals.Clear();
+
+        for (int i= 1; i<lines.Length; i++)
+        {
+            string[] parts = lines[i].Split(";");
+            string type = parts[0];
+            string[] details = parts[1].Split("-");
+
+            if (type == "SimpleGoal")
+            {
+                SimpleGoal g = new SimpleGoal(details[0], details[1], int.Parse(details[3]));
+                if (details[3] == "True") g.RecordEvent();
+                _goals.Add(g);
+            }
+
+            else if (type == "EternalGoal")
+            {
+                _goals.Add(new EternalGoal(details[0], details[1], int.Parse(details[3])));
+            }
+
+            else if (type == "ChecklistGoal")
+            {
+
+                ChecklistGoal g= new ChecklistGoal(details[0], details[1], int.Parse(details[3]), int.Parse(details[4]), int.Parse(details[3]));
+                int completed = int.Parse(details[4]);
+                for (int j = 0; j< completed; j++) g.RecordEvent();
+                _goals.Add(g);
+            }
+        }
+        Console.WriteLine("Loaded!");
+
+    }
 }
