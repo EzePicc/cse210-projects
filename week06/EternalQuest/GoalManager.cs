@@ -48,5 +48,47 @@ public class GoalManager
             Console.WriteLine($"{i + 1}.{_goals[i].GetDetailsString()}");
         }
     }
-    
+    public void CreateGoal()
+    {
+        Console.WriteLine("\nWhat type of goal?");
+        Console.WriteLine("1. Simple Goal");
+        Console.WriteLine("2. Eternal Goal");
+        Console.WriteLine("3. Checklist Goal");
+        Console.Write("Select: ");
+        string type = Console.ReadLine();
+        Console.Write("Name:");
+        string name = Console.ReadLine();
+        Console.Write("Description: ");
+        string description = Console.ReadLine();
+        Console.Write("Points: ");
+        int points = int.Parse(Console.ReadLine());
+
+        if (type == "1")
+        {
+            _goals.Add(new SimpleGoal(name, description, points));
+        }
+        else if (type == "2")
+        {
+            _goals.Add(new EternalGoal(name, description, points) );
+        }
+        else if (type== "3")
+        {
+            Console.Write("Target: ");
+            int target=int.Parse(Console.ReadLine());
+            Console.Write("Extra points: ");
+            int bonus= int.Parse(Console.ReadLine());
+            _goals.Add(new ChecklistGoal(name, description, points, target, bonus));
+        }
+    }
+    public void RecordEvent()
+    {
+        ListGoalDetails();
+        Console.Write("\nWhich goal?: ");
+        int index = int.Parse(Console.ReadLine()) - 1;
+
+        Goal goal = _goals[index];
+        goal.RecordEvent();
+        Console.WriteLine($"You earned {goal.GetPoints()} points!");
+        _score += goal.GetPoints();
+    }
 }
