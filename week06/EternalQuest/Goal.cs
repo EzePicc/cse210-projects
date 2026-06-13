@@ -12,7 +12,10 @@ public class Goal
         _points = points;
     }
 
-
+    public int GetPoints()
+    {
+        return _points;
+    }
     public virtual void RecordEvent() { }
 
     public virtual bool IsComplete()
@@ -23,5 +26,5 @@ public class Goal
     {
         return $"[ ] {_shortName} ({_description})";
     }
-    
+
 }
