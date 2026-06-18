@@ -20,4 +20,16 @@ public abstract class Activity
     {
         return _lengthInMinutes;
     }
+
+    public abstract double GetDistance();
+    public abstract double GetSpeed();
+    public abstract double GetPace();
+
+    public virtual string GetSummary()
+    {
+        string dateFormatted= _date.ToString("dd MM yy");
+        
+        return $"{dateFormatted}{GetActivityName()} {_lengthInMinutes} min - Distance:{GetDistance():0.0} km, Speed: {GetSpeed():0.0} kph, Pace:{GetPace():0.00} min km";
+    }
+    protected abstract string GetActivityName();
 }
