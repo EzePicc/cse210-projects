@@ -11,4 +11,19 @@ public class Cycling: Activity
     {
         return (_speed * GetLengthInMinutes()) / 60;
     }
+
+    public override double GetSpeed()
+    {
+        return _speed;
+    }
+
+    public override double GetPace()
+    {
+        return 60 / _speed;
+    }
+
+    protected override string GetActivityName()
+    {
+        return "Cycling";
+    }
 }
